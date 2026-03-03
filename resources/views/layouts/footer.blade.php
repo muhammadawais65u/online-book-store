@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white py-4 mt-5">
+<!-- <footer class="bg-dark text-white py-4 mt-5">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -29,4 +29,4 @@
             <p>&copy; {{ date('Y') }} Online Book Store. All rights reserved.</p>
         </div>
     </div>
-</footer>
+</footer> -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,7 +13,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with('user')->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -36,7 +38,8 @@ class OrderController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $order = Order::with(['user', 'orderItems.book'])->findOrFail($id);
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -52,7 +55,27 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
+        ]);
+
+        $order = Order::findOrFail($id);
+        $order->update(['status' => $request->status]);
+
+        return redirect()->route('admin.orders.index')
+            ->with('success', 'Order status updated successfully!');
+    }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,processing,shipped,delivered,cancelled'
+        ]);
+
+        $order->update(['status' => $request->status]);
+
+        return redirect()->back()
+            ->with('success', 'Order status updated successfully!');
     }
 
     /**

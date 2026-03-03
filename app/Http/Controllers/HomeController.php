@@ -17,11 +17,18 @@ class HomeController extends Controller
                             ->take(8)
                             ->get();
 
+        // Get latest books (most recently added)
+        $latestBooks = Book::where('is_active', true)
+                           ->with(['author', 'category'])
+                           ->orderBy('created_at', 'desc')
+                           ->take(8)
+                           ->get();
+
         // Get all categories
         $categories = Category::where('is_active', true)
                              ->withCount('books')
                              ->get();
 
-        return view('welcome', compact('featuredBooks', 'categories'));
+        return view('welcome', compact('featuredBooks', 'latestBooks', 'categories'));
     }
 }

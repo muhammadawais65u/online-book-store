@@ -1,6 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
+   <header class="bg-white shadow">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="{{ url('/') }}">
+                    <i class="fas fa-book text-primary me-2"></i>
+                    Online Book Store
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('books.index') }}">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('books.index') }}">Categories</a>
+                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @else
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->isAdmin())
+                                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="{{ route('customer.dashboard') }}">Dashboard</a></li>
+                                    @endif
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Logout</button>
+                                    </form></li>
+                                </ul>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 <div class="container py-4">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -103,22 +155,25 @@
     </div>
     
     <!-- Reviews Section -->
-    <div class="row mt-5">
-        <div class="col-12">
-            <h3>Customer Reviews</h3>
+        <div class="mb-12">
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <h3 class="text-4xl font-black mb-8 text-gray-800 flex items-center bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                    <i class="fas fa-star text-yellow-500 mr-3"></i>
+                    Customer Reviews
+                </h3>
             
             @if($book->reviews()->where('is_approved', true)->count() > 0)
                 <div class="row">
-                    @foreach($book->reviews()->where('is_approved', true')->latest()->get() as $review)
+                    @foreach($book->reviews()->where('is_approved', true)->latest()->get() as $review)
                         <div class="col-md-6 mb-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between mb-2">
                                         <h6 class="card-title mb-0">{{ $review->user->name }}</h6>
                                         <div>
-                                            @for($i = 1; $i <= 5; $i++)
+                                            @foreach(range(1, 5) as $i)
                                                 <i class="fas fa-star {{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}"></i>
-                                            @endfor
+                                            @endforeach
                                         </div>
                                     </div>
                                     <p class="card-text">{{ $review->comment }}</p>
@@ -137,10 +192,13 @@
     </div>
     
     <!-- Related Books -->
-    @if($relatedBooks->count() > 0)
-        <div class="row mt-5">
-            <div class="col-12">
-                <h3>Related Books</h3>
+        @if($relatedBooks->count() > 0)
+            <div class="mb-12">
+                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <h3 class="text-4xl font-black mb-8 text-gray-800 flex items-center bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent">
+                        <i class="fas fa-books text-green-600 mr-3"></i>
+                        Related Books
+                    </h3>
                 <div class="row">
                     @foreach($relatedBooks as $relatedBook)
                         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -168,4 +226,36 @@
         </div>
     @endif
 </div>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Online Book Store</h5>
+                    <p>Your one-stop destination for all your reading needs. Discover amazing books from various genres.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('books.index') }}" class="text-white">Browse Books</a></li>
+                        <li><a href="{{ route('books.index') }}" class="text-white">Categories</a></li>
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <p>&copy; {{ date('Y') }} Online Book Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 @endsection

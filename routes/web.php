@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BookStatisticsController;
+use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CartController;
@@ -42,8 +44,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
+    // Users Management
+    Route::resource('users', UserManagementController::class);
+    
     // Books CRUD
     Route::resource('books', AdminBookController::class);
+    Route::get('/books/statistics', [BookStatisticsController::class, 'index'])->name('books.statistics');
     
     // Categories CRUD
     Route::resource('categories', AdminCategoryController::class);
