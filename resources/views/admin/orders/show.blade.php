@@ -107,7 +107,7 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mb-5">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-4 border-bottom">
                 <div>
                     <h1 class="h2 fw-bold text-dark">Order Details</h1>
@@ -120,40 +120,11 @@
                 </div>
             </div>
                     
-                    <!-- Books Section -->
-                    <li class="nav-item">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Books</span>
-                        </h6>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.books.index') }}">
-                            <i class="fas fa-list"></i> Book List
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.books.create') }}">
-                            <i class="fas fa-plus"></i> Add Book
-                        </a>
-                    </li>
-                    
-                    <!-- Orders Section -->
-                    <li class="nav-item">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Orders</span>
-                        </h6>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('admin.orders.index') }}">
-                            <i class="fas fa-shopping-cart"></i> Order List
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+          
+      
 
         <!-- Main Content -->
-        <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="col-md-9 mx-sm-auto col-lg-10 ">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Order Details - #{{ $order->order_number }}</h1>
                 <a href="{{ route('admin.orders.index') }}" class="btn btn-secondary">Back to Orders</a>
@@ -209,67 +180,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <!-- Order Information -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">Order Information</h5>
-                        </div>
-                        <div class="card-body">
-                            <p><strong>Order Number:</strong> {{ $order->order_number }}</p>
-                            <p><strong>Status:</strong> 
-                                <span class="badge bg-{{ $order->status_color }}">
-                                    {{ ucfirst($order->status) }}
-                                </span>
-                            </p>
-                            <p><strong>Order Date:</strong> {{ $order->created_at->format('M d, Y H:i') }}</p>
-                            <p><strong>Payment Method:</strong> {{ ucfirst($order->payment_method) }}</p>
-                        </div>
-                    </div>
+       
+                   
 
-                    <!-- Customer Information -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">Customer Information</h5>
-                        </div>
-                        <div class="card-body">
-                            <p><strong>Name:</strong> {{ $order->user->name }}</p>
-                            <p><strong>Email:</strong> {{ $order->user->email }}</p>
-                            <p><strong>Phone:</strong> {{ $order->phone }}</p>
-                        </div>
-                    </div>
+             
 
-                    <!-- Shipping Information -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h5 class="mb-0">Shipping Address</h5>
-                        </div>
-                        <div class="card-body">
-                            <p>{{ $order->shipping_address }}</p>
-                        </div>
-                    </div>
-
-                    <!-- Update Status -->
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Update Status</h5>
-                        </div>
-                        <div class="card-body">
-                            <form action="{{ route('admin.orders.update-status', $order->id) }}" method="POST">
-                                @csrf
-                                <div class="mb-3">
-                                    <select name="status" class="form-select" required>
-                                        <option value="">Select Status</option>
-                                        <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                        <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Processing</option>
-                                        <option value="shipped" {{ $order->status == 'shipped' ? 'selected' : '' }}>Shipped</option>
-                                        <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>Delivered</option>
-                                        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col-md-4">
                         <!-- Order Information -->

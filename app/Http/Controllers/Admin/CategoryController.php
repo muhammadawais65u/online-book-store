@@ -59,7 +59,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -67,7 +68,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'description' => 'nullable|string|max:1000'
+        ]);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => strtolower(str_replace(' ', '-', $request->name)),
+            'description' => $request->description,
+            'is_active' => $request->has('is_active')
+        ]);
+
+        return redirect()->route('admin.categories.index')
+            ->with('success', 'Category updated successfully!');
     }
 
     /**
@@ -75,6 +91,17 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        // Check if category has associated books
+        if ($category->books()->count() > 0) {
+            return redirect()->route('admin.categories.index')
+                ->with('error', 'Cannot delete category that has associated books. Please reassign or delete the books first.');
+        }
+
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')
+            ->with('success', 'Category deleted successfully!');
     }
 }

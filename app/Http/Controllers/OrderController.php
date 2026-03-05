@@ -13,10 +13,7 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // Removed middleware from constructor since authentication is handled in routes
 
     public function index()
     {

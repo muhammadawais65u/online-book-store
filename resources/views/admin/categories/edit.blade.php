@@ -12,91 +12,91 @@
                     <h4 class="text-primary fw-bold">Admin Panel</h4>
                     <small class="text-muted">Online Book Store</small>
                 </div>
-                
+
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.dashboard') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.dashboard') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.dashboard') }}">
                             <i class="fas fa-home me-3"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    
+
                     <!-- Users Section -->
                     <li class="nav-item">
                         <div class="nav-section-title text-uppercase text-muted small fw-bold mb-2 px-3">Users</div>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.users.*') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.users.*') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.users.index') }}">
                             <i class="fas fa-users me-3"></i>
                             <span>User Management</span>
                         </a>
                     </li>
-                    
+
                     <!-- Books Section -->
                     <li class="nav-item">
                         <div class="nav-section-title text-uppercase text-muted small fw-bold mb-2 px-3 mt-3">Books</div>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.books.index') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.books.index') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.books.index') }}">
                             <i class="fas fa-book me-3"></i>
                             <span>All Books</span>
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.books.create') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.books.create') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.books.create') }}">
                             <i class="fas fa-plus-circle me-3"></i>
                             <span>Add Book</span>
                         </a>
                     </li>
-                    
+
                     <!-- Authors Section -->
                     <li class="nav-item">
                         <div class="nav-section-title text-uppercase text-muted small fw-bold mb-2 px-3 mt-3">Authors</div>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.authors.index') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.authors.index') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.authors.index') }}">
                             <i class="fas fa-user-edit me-3"></i>
                             <span>Authors List</span>
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.authors.create') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.authors.create') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.authors.create') }}">
                             <i class="fas fa-user-plus me-3"></i>
                             <span>Add Author</span>
                         </a>
                     </li>
-                    
+
                     <!-- Categories Section -->
                     <li class="nav-item">
                         <div class="nav-section-title text-uppercase text-muted small fw-bold mb-2 px-3 mt-3">Categories</div>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.categories.index') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.categories.index') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.categories.index') }}">
                             <i class="fas fa-tags me-3"></i>
                             <span>Categories</span>
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.categories.create') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.categories.create') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.categories.create') }}">
                             <i class="fas fa-plus me-3"></i>
                             <span>Add Category</span>
                         </a>
                     </li>
-                    
+
                     <!-- Orders Section -->
                     <li class="nav-item">
                         <div class="nav-section-title text-uppercase text-muted small fw-bold mb-2 px-3 mt-3">Orders</div>
                     </li>
                     <li class="nav-item mb-2">
-                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.orders.*') ? 'active bg-primary text-white' : 'text-muted' }}" 
+                        <a class="nav-link d-flex align-items-center rounded {{ request()->routeIs('admin.orders.*') ? 'active bg-primary text-white' : 'text-muted' }}"
                            href="{{ route('admin.orders.index') }}">
                             <i class="fas fa-shopping-bag me-3"></i>
                             <span>Orders</span>
@@ -110,85 +110,81 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-3 mb-4 border-bottom">
                 <div>
-                    <h1 class="h2 fw-bold text-dark">Authors Management</h1>
-                    <p class="text-muted mb-0">Manage your book authors</p>
+                    <h1 class="h2 fw-bold text-dark">Edit Category</h1>
+                    <p class="text-muted mb-0">Update category information</p>
                 </div>
                 <div class="btn-toolbar">
-                    <a href="{{ route('admin.authors.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus me-1"></i> Add New Author
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-1"></i> Back to Categories
                     </a>
                 </div>
             </div>
 
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            @endif
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Category Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('admin.categories.update', $category) }}">
+                                @csrf
+                                @method('PUT')
 
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Books Count</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($authors as $author)
-                                    <tr>
-                                        <td>{{ $author->id }}</td>
-                                        <td>{{ $author->name }}</td>
-                                        <td>{{ $author->books()->count() }}</td>
-                                        <td>
-                                            @if($author->is_active)
-                                                <span class="badge bg-success">Active</span>
-                                            @else
-                                                <span class="badge bg-danger">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $author->created_at->format('M d, Y') }}</td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="{{ route('admin.authors.show', $author) }}" class="btn btn-sm btn-outline-primary">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('admin.authors.edit', $author) }}" class="btn btn-sm btn-outline-warning">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <form action="{{ route('admin.authors.destroy', $author) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this author?')">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center">No authors found.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Category Name</label>
+                                    <input type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           id="name"
+                                           name="name"
+                                           value="{{ old('name', $category->name) }}"
+                                           placeholder="Enter category name"
+                                           required>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
 
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span>Showing {{ $authors->firstItem() }} to {{ $authors->lastItem() }} of {{ $authors->total() }} authors</span>
-                        {{ $authors->links() }}
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control @error('description') is-invalid @enderror"
+                                              id="description"
+                                              name="description"
+                                              rows="4"
+                                              placeholder="Enter category description">{{ old('description', $category->description) }}</textarea>
+                                    @error('description')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', $category->is_active) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="is_active">
+                                            <i class="fas fa-check-circle me-2"></i>Active Category
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">Uncheck to deactivate this category</small>
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-1"></i> Update Category
+                                    </button>
+                                    <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">
+                                        <i class="fas fa-times me-1"></i> Cancel
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </div>
 
@@ -242,11 +238,11 @@ main {
         border-right: none;
         border-bottom: 1px solid #e9ecef;
     }
-    
+
     main {
         margin-left: 0;
     }
-    
+
     .main-content {
         padding-top: 140px;
     }

@@ -30,9 +30,11 @@ class Cart extends Model
 
     public function updateTotalAmount()
     {
-        $this->total_amount = $this->cartItems()->sum(function ($item) {
+        $total = $this->cartItems->sum(function ($item) {
             return $item->quantity * $item->price;
         });
+
+        $this->total_amount = $total;
         $this->save();
     }
 }

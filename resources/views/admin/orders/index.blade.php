@@ -115,36 +115,7 @@
                 </div>
             </div>
                     
-                    <!-- Books Section -->
-                    <li class="nav-item">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Books</span>
-                        </h6>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.books.index') }}">
-                            <i class="fas fa-list"></i> Book List
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.books.create') }}">
-                            <i class="fas fa-plus"></i> Add Book
-                        </a>
-                    </li>
-                    
-                    <!-- Orders Section -->
-                    <li class="nav-item">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Orders</span>
-                        </h6>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('admin.orders.index') }}">
-                            <i class="fas fa-shopping-cart"></i> Order List
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            
         </div>
 
         <!-- Main Content -->

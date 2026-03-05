@@ -22,7 +22,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('authors.create');
+        return view('admin.authors.create');
     }
 
     /**
@@ -56,7 +56,8 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $author = Author::findOrFail($id);
+        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -64,7 +65,19 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $author = Author::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255|unique:authors,name,' . $author->id
+        ]);
+
+        $author->update([
+            'name' => $request->name,
+            'is_active' => $request->has('is_active')
+        ]);
+
+        return redirect()->route('admin.authors.index')
+            ->with('success', 'Author updated successfully!');
     }
 
     /**

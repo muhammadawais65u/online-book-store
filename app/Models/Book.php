@@ -15,6 +15,7 @@ class Book extends Model
         'description',
         'price',
         'cover_image',
+        'pdf_file',
         'stock_quantity',
         'pages',
         'isbn',
@@ -22,6 +23,7 @@ class Book extends Model
         'category_id',
         'author_id',
         'is_featured',
+        'is_free',
         'is_active',
     ];
 
@@ -29,6 +31,7 @@ class Book extends Model
         'published_date' => 'date',
         'price' => 'decimal:2',
         'is_featured' => 'boolean',
+        'is_free' => 'boolean',
         'is_active' => 'boolean',
     ];
 

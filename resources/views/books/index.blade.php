@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('content')
+ 
+    <main>
 <div class="container py-4">
     <div class="row">
         <!-- Sidebar Filters -->
@@ -70,12 +72,27 @@
                                     </div>
                                 @endif
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ Str::limit($book->title, 40) }}</h5>
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h5 class="card-title mb-0">{{ Str::limit($book->title, 40) }}</h5>
+                                        @if($book->is_free)
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-gift me-1"></i>FREE
+                                            </span>
+                                        @else
+                                            <span class="badge bg-primary">
+                                                <i class="fas fa-tag me-1"></i>PAID
+                                            </span>
+                                        @endif
+                                    </div>
                                     <p class="card-text text-muted small">by {{ $book->author->name }}</p>
                                     <p class="card-text small">{{ Str::limit($book->description, 80) }}</p>
                                     <div class="mt-auto">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold text-primary">{{ $book->formatted_price }}</span>
+                                            @if($book->is_free)
+                                                <span class="fw-bold text-success">FREE</span>
+                                            @else
+                                                <span class="fw-bold text-primary">{{ $book->formatted_price }}</span>
+                                            @endif
                                             @if($book->stock_quantity > 0)
                                                 <span class="badge bg-success">In Stock</span>
                                             @else
@@ -83,15 +100,29 @@
                                             @endif
                                         </div>
                                         <div class="d-flex gap-2">
-                                            <a href="{{ route('books.show', $book) }}" class="btn btn-outline-primary btn-sm flex-fill">View Details</a>
-                                            @if($book->stock_quantity > 0)
-                                                <form action="{{ route('cart.add', $book) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    <input type="hidden" name="quantity" value="1">
-                                                    <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
-                                                </form>
+                                            <a href="{{ route('books.show', $book) }}" class="btn btn-outline-primary btn-sm flex-fill">
+                                                <i class="fas fa-eye me-1"></i>View
+                                            </a>
+                                            @if($book->is_free)
+                                                @if($book->pdf_file)
+                                                    <a href="{{ asset('storage/' . $book->pdf_file) }}" class="btn btn-success btn-sm flex-fill" download>
+                                                        <i class="fas fa-download me-1"></i>Download
+                                                    </a>
+                                                @endif
                                             @else
-                                                <button class="btn btn-secondary btn-sm" disabled>Out of Stock</button>
+                                                @if($book->stock_quantity > 0)
+                                                    <form action="{{ route('cart.add', $book) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        <input type="hidden" name="quantity" value="1">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-shopping-cart me-1"></i>Add to Cart
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <button class="btn btn-secondary btn-sm" disabled>
+                                                        <i class="fas fa-times me-1"></i>Out of Stock
+                                                    </button>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>
@@ -116,4 +147,6 @@
         </div>
     </div>
 </div>
+</main>
+
 @endsection

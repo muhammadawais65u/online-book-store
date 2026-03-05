@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // Removed middleware from constructor since authentication is handled manually in methods
 
     public function index()
     {

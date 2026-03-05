@@ -39,12 +39,25 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'customer', // Set default role for new users
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Ensure user is properly authenticated
+        Auth::login($user, true); // true for "remember me"
 
-        return redirect(route('dashboard', absolute: false));
+        // Check if user is actually authenticated
+        if (Auth::check()) {
+            // Redirect based on user role
+            if ($user->isAdmin()) {
+                return redirect()->to('/admin/dashboard');
+            } else {
+                return redirect()->to('/customer/dashboard');
+            }
+        } else {
+            // If authentication failed, redirect to login with error
+            return redirect()->route('login')->with('error', 'Registration successful, but login failed. Please login manually.');
+        }
     }
 }

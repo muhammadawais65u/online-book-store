@@ -1,16 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.customer')
 
-@section('content')
+@section('customer-content')    
 <div class="container py-4">
     <h2 class="mb-4">Shopping Cart</h2>
     
-    @if($cart && $cart->items->count() > 0)
+    @if($cart && $cart->cartItems->count() > 0)
         <div class="row">
             <!-- Cart Items -->
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
-                        @foreach($cart->items as $item)
+                        @foreach($cart->cartItems as $item)
                             <div class="row align-items-center mb-3 pb-3 border-bottom">
                                 <div class="col-md-2">
                                     @if($item->book->cover_image)
@@ -84,6 +84,9 @@
                         <div class="d-grid gap-2">
                             <a href="{{ route('checkout') }}" class="btn btn-primary">
                                 <i class="fas fa-credit-card"></i> Proceed to Checkout
+                            </a>
+                            <a href="{{ route('orders.index') }}" class="btn btn-outline-info">
+                                <i class="fas fa-shopping-bag"></i> My Orders
                             </a>
                             <a href="{{ route('books.index') }}" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left"></i> Continue Shopping
