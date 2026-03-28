@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "netlify:build": "npm run build && composer install --no-dev --optimize-autoloader && npx shx cp -r public dist"
+        "netlify:build": "npm run build && npx shx mkdir -p dist && npx shx cp -r public/* dist/ && npx shx cp -r app dist/ && npx shx cp -r bootstrap dist/ && npx shx cp -r config dist/ && npx shx cp -r database dist/ && npx shx cp -r routes dist/ && npx shx cp -r storage dist/ && npx shx cp artisan dist/ && npx shx cp composer.json dist/ && npx shx cp composer.lock dist/ && npx shx cp .env.example dist/"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
